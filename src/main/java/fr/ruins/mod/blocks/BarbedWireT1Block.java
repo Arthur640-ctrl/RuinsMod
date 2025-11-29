@@ -56,7 +56,7 @@ public class BarbedWireT1Block extends Block implements SimpleWaterloggedBlock {
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
         double randomNumber = Math.random();
         boolean dump = false;
-        if (randomNumber >= 0.98) {
+        if (randomNumber >= 0.60) {
             dump = true;
         }
 
