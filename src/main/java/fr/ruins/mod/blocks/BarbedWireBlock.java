@@ -1,13 +1,18 @@
 package fr.ruins.mod.blocks;
 
 import com.mojang.math.Vector3f;
+import fr.ruins.mod.items.BarbedWirePliers;
 import fr.ruins.mod.procedures.OnEntityInsideBarbedWireBlock;
+import fr.ruins.mod.registers.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -32,7 +37,9 @@ public class BarbedWireBlock extends Block implements SimpleWaterloggedBlock {
                 .of(Material.METAL)
                 .sound(SoundType.CHAIN)
                 .noCollission()
-                .noOcclusion());
+                .noOcclusion()
+                .strength(3.5F)
+        );
 
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
     }
@@ -58,4 +65,26 @@ public class BarbedWireBlock extends Block implements SimpleWaterloggedBlock {
         OnEntityInsideBarbedWireBlock.execute(state, level, pos, entity);
         super.entityInside(state, level, pos, entity);
     }
+
+    @Override
+    public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+        if (!world.isClientSide) {
+            world.removeBlock(pos, false);
+
+            ItemStack drop;
+            ItemStack held = player.getMainHandItem();
+
+            if (held.getItem() instanceof BarbedWirePliers) {
+                drop = new ItemStack(ModItems.BARBED_WIRE_ITEM.get());
+            } else {
+                Random rand = new Random();
+                int amount = 1 + rand.nextInt(3);
+
+                drop = new ItemStack(ModItems.WIRE.get(), amount);
+            }
+
+            Block.popResource(world, pos, drop);
+        }
+    }
+
 }

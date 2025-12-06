@@ -2,6 +2,7 @@ package fr.ruins.mod.registers;
 
 import fr.ruins.mod.RuinsMod;
 import fr.ruins.mod.armors.InsulateArmorMaterials;
+import fr.ruins.mod.items.BarbedWirePliers;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
@@ -39,6 +40,12 @@ public class ModItems {
     public static final RegistryObject<Item> INSULATE_ARMOR_BOOTS = ITEMS.register("insulate_armor_boots",
             () -> new ArmorItem(InsulateArmorMaterials.INSULATE_ARMOR, EquipmentSlot.FEET,
                     new Item.Properties().tab(ModCreativeTabs.RUINS_TAB)));
+
+    public static final RegistryObject<Item> WIRE = ITEMS.register("wire",
+            () -> new Item(new Item.Properties().tab(ModCreativeTabs.RUINS_TAB)));
+
+    public static final RegistryObject<Item> BARBED_WIRE_PLIERS = ITEMS.register("barbed_wire_pliers",
+            () -> new BarbedWirePliers());
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
