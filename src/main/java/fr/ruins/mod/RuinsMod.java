@@ -3,6 +3,7 @@ package fr.ruins.mod;
 import com.mojang.logging.LogUtils;
 import fr.ruins.mod.registers.ModBlocks;
 import fr.ruins.mod.registers.ModItems;
+import fr.ruins.mod.worldgen.ModWorldGen;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;

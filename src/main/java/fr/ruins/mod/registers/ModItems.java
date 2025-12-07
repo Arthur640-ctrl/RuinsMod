@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -46,6 +47,16 @@ public class ModItems {
 
     public static final RegistryObject<Item> BARBED_WIRE_PLIERS = ITEMS.register("barbed_wire_pliers",
             () -> new BarbedWirePliers());
+
+    public static final RegistryObject<Item> COPPER_WIRE = ITEMS.register("copper_wire",
+            () -> new Item(new Item.Properties().tab(ModCreativeTabs.RUINS_TAB)));
+
+    public static final RegistryObject<Item> RUBBER = ITEMS.register("rubber",
+            () -> new Item(new Item.Properties().tab(ModCreativeTabs.RUINS_TAB)));
+
+    public static final RegistryObject<Item> ZINC_ORE_ITEM = ITEMS.register("zinc_ore",
+            () -> new BlockItem(ModBlocks.ZINC_ORE.get(),
+                    new Item.Properties().tab(ModCreativeTabs.RUINS_TAB)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
